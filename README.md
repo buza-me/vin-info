@@ -1,6 +1,5 @@
 # Vin info SPA
 An SPA to decode vehicle VIN codes and get general VIN code info.
-App is hosted [here]('#').
 
 ***
 
