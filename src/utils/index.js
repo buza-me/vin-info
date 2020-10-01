@@ -59,8 +59,13 @@ export const createAsyncAction = (fn, options) => (payload) => async (dispatch, 
     delete: (key) => cMap.delete(key),
     has: (key) => cMap.has(key),
     clear: () => cMap.clear(),
-    size: () => cMap.size,
   };
+
+  Object.defineProperty(cache, 'size', {
+    configurable: false,
+    enumerable: false,
+    get: () => cMap.size,
+  });
 
   return fn({ payload, dispatch, getState, cache });
 };
