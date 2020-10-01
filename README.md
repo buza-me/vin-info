@@ -1,6 +1,6 @@
 # Vin info SPA
 An SPA to decode vehicle VIN codes and get general VIN code info.
-App is hosted [at this link](https://pwm-credentials.herokuapp.com/)
+App is hosted [at this link](https://vin-info.herokuapp.com/).
 
 ***
 
