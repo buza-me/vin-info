@@ -1,0 +1,10 @@
+.error-message__container {
+  color: var(--red-color);
+  font-size: var(--font-size-small);
+}
+
+@media screen and (max-width: 415px) {
+  .error-message__container {
+    font-size: var(--font-size-extra-small);
+  }
+}

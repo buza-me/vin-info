@@ -1,0 +1,21 @@
+.button__container {
+  border-radius: var(--border-radius);
+  background-color: var(--crimson-color);
+  color: var(--text-light-color);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-large);
+  transition: filter var(--transition-time);
+  cursor: pointer;
+  padding: var(--font-size-large) calc(var(--font-size-large) * 2.5);
+}
+
+.button__container:hover {
+  filter: var(--brightness-filter);
+}
+
+@media screen and (max-width: 415px) {
+  .button__container {
+    font-size: var(--font-size-normal);
+    padding: var(--font-size-normal) calc(var(--font-size-normal) * 2.5);
+  }
+}

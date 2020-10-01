@@ -1,0 +1,15 @@
+.label__container {
+  font-size: var(--font-size-normal);
+  padding-bottom: 0.5rem;
+}
+
+.label__star {
+  color: var(--red-color);
+}
+
+@media screen and (max-width: 415px) {
+  .label__container {
+    font-size: var(--font-size-small);
+    padding-bottom: 0;
+  }
+}
