@@ -1,0 +1,19 @@
+.error-page__container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 2rem;
+  justify-items: center;
+  align-content: center;
+}
+
+.error-page__header {
+  color: var(--text-darker-color);
+  font-size: calc(var(--font-size-large) * 2);
+}
+
+.error-page__link {
+  color: var(--crimson-color);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-large);
+}
