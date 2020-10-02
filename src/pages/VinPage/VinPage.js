@@ -1,7 +1,7 @@
 import './VinPage.css';
 import React, { useCallback, useContext, useMemo, useState } from 'react';
 import { TextContext, StoreContext } from 'Contexts';
-import { VinForm, VariableList, HistoryList, Link } from 'Components';
+import { VinForm, VariableList, HistoryList, Link, Header } from 'Components';
 import { VARIABLES_ROUTE } from 'Constants';
 
 export const VinPage = () => {
@@ -26,7 +26,7 @@ export const VinPage = () => {
   const historyListTitle = useMemo(() => getText('vinPage.history.title'), [getText]);
   const historyActionTitle = useMemo(() => getText('vinPage.history.actionTitle'), [getText]);
 
-  const pageTitle = useMemo(() => <h1>{getText('vinPage.title')}</h1>, [getText]);
+  const header = useMemo(() => <Header title={getText('vinPage.title')} />, [getText]);
 
   const formCallback = useCallback(
     (value) => {
@@ -106,7 +106,7 @@ export const VinPage = () => {
 
   return (
     <main className='vin-page__container'>
-      {pageTitle}
+      {header}
       <div className='vin-page__actions'>
         {form}
         <div className='vin-page__actions_navigation'>
