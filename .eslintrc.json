@@ -10,7 +10,7 @@
     "SharedArrayBuffer": "readonly",
     "moment": "readonly"
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true,
@@ -20,7 +20,7 @@
     "sourceType": "module",
     "allowImportExportEverywhere": false
   },
-  "plugins": [],
+  "plugins": ["@babel"],
   "rules": {
     "react/jsx-filename-extension": 0,
     "linebreak-style": "off",
