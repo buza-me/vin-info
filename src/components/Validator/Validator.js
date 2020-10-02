@@ -4,8 +4,8 @@ const defaultStrategy = ({ value, validators, required }) =>
   (!required || !!value) &&
   (!validators || !validators.length || validators.some((validator) => validator(value)));
 
-const InputWrapperBase = (
-  { renderChildren, validators, required, childRefs = [], strategy = defaultStrategy },
+const ValidatorBase = (
+  { renderChildren, validators, required, strategy = defaultStrategy },
   ref
 ) => {
   const [meta, setMeta] = useState({
@@ -58,7 +58,7 @@ const InputWrapperBase = (
   const children = renderChildren({
     onChange: changeListener,
     onBlur: blurListener,
-    getRefs: () => childRefs,
+    required,
     meta,
   });
 
@@ -69,4 +69,4 @@ const InputWrapperBase = (
   );
 };
 
-export const Validator = forwardRef(InputWrapperBase);
+export const Validator = forwardRef(ValidatorBase);

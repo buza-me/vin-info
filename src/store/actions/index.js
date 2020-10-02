@@ -37,7 +37,7 @@ export const decodeVinAsync = createAsyncAction(
     const parsedResponse = await response.json();
 
     const decodeResult = {
-      vin: payload,
+      of: payload,
       result: parsedResponse,
     };
     cache.set(payload, decodeResult);
