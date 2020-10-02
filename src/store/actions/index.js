@@ -6,6 +6,7 @@ import {
   SET_VARIABLES,
   DECODE_VIN_URL,
   VARIABLES_URL,
+  VARIABLE_DETAILS_URL,
   FORMAT,
   HISTORY_LIMIT,
 } from 'Constants';
@@ -77,7 +78,7 @@ export const getSelectedVariableAsync = createAsyncAction(
     }
 
     const response = await makeRequest({
-      url: `${VARIABLES_URL}/${payload}?${FORMAT}`,
+      url: `${VARIABLE_DETAILS_URL}/${payload}?${FORMAT}`,
       expectedStatuses: [200, 304],
       method: 'GET',
     });

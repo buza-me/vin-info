@@ -1,10 +1,12 @@
 import './VariableListPage.css';
 import React, { useContext, useEffect, useMemo } from 'react';
+import { useHistory } from 'react-router-dom';
 import { TextContext, StoreContext } from 'Contexts';
-import { VariableList, Header, Link } from 'Components';
+import { VariableList, Header, Button } from 'Components';
 import { VARIABLES_ROUTE, ROOT_ROUTE } from 'Constants';
 
 export const VariableListPage = () => {
+  const history = useHistory();
   const { getText } = useContext(TextContext);
   const { getFromStore } = useContext(StoreContext);
   const initVariables = getFromStore('getVariablesAsync');
@@ -23,7 +25,9 @@ export const VariableListPage = () => {
   const header = useMemo(
     () => (
       <Header title={getText('varListPage.headerTitle')}>
-        <Link to={ROOT_ROUTE}>{getText('varListPage.linkToMainPageText')}</Link>
+        <Button type='button' onClick={() => history.push(ROOT_ROUTE)}>
+          {getText('varListPage.linkToMainPageText')}
+        </Button>
       </Header>
     ),
     [getText]

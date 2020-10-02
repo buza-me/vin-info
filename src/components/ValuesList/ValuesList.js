@@ -2,11 +2,13 @@ import './ValuesList.css';
 import React from 'react';
 import { ValuesListItem } from 'Components';
 
-export const ValuesList = ({ data, title }) => (
+export const ValuesList = ({ data, title, name }) => (
   <ul className='values-list__container'>
     {title ? <li className='values-list__title'>{title}</li> : null}
-    {data?.map?.((item) => (
-      <ValuesListItem item={item} key={item.id} />
+    {name ? <li className='values-list__var-name'>{name}</li> : null}
+    {data?.map?.((item, index) => (
+      // eslint-disable-next-line react/no-array-index-key
+      <ValuesListItem item={item} key={`${item}_${index}`} />
     ))}
   </ul>
 );
