@@ -4,6 +4,7 @@ export * from './Label/Label';
 export * from './Input/Input';
 export * from './ErrorMessage/ErrorMessage';
 export * from './Validator/Validator';
+export * from './Header/Header';
 export * from './HistoryListItem/HistoryListItem';
 export * from './HistoryList/HistoryList';
 export * from './VariableListItem/VariableListItem';
