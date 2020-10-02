@@ -32,8 +32,7 @@ export const VinPage = () => {
     (value) => {
       if (!isLoading) {
         setIsLoading(true);
-        decodeVin(value).catch(console.log);
-        setIsLoading(false);
+        decodeVin(value).finally(() => setIsLoading(false));
       }
     },
     [decodeVin, isLoading]
@@ -48,7 +47,7 @@ export const VinPage = () => {
         inputPlaceholder={formInputPlaceholder}
       />
     ),
-    [decodeVin, getText]
+    [decodeVin, getText, formCallback]
   );
 
   const suitableHistory = useMemo(

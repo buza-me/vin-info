@@ -7,6 +7,7 @@ import {
   DECODE_VIN_URL,
   VARIABLES_URL,
   FORMAT,
+  HISTORY_LIMIT,
 } from 'Constants';
 
 export const setDecodeHistory = createAction(SET_DECODE_HISTORY);
@@ -19,7 +20,8 @@ export const decodeVinAsync = createAsyncAction(
     const { decodeHistory } = getState().dataReducer;
 
     const setValues = (freshItem) => {
-      const shortenedHistory = decodeHistory.slice(1);
+      const shortenedHistory =
+        decodeHistory.length === HISTORY_LIMIT ? decodeHistory.slice(1) : decodeHistory;
       dispatch(setDecodeHistory([...shortenedHistory, freshItem]));
       dispatch(setSelectedDecodeResults(freshItem));
     };
