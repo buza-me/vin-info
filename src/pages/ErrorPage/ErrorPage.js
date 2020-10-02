@@ -1,6 +1,6 @@
 import './ErrorPage.css';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'Components';
 import { ROOT_ROUTE } from 'Constants';
 import { TextContext } from 'Contexts';
 
