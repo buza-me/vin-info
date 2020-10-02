@@ -45,6 +45,7 @@
     "import/no-cycle": "off",
     "react/jsx-indent": "off",
     "indent": "off",
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "no-unused-expressions": "off"
   }
 }

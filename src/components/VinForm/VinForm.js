@@ -12,30 +12,31 @@ export const VinForm = ({ action, label, validationError, inputPlaceholder }) =>
       const meta = validatorRef?.current?.getMeta?.();
       if (meta?.isValid) {
         action.callback(meta.value);
-        validatorRef.reset();
+        validatorRef?.current?.reset();
       }
     },
     [action]
   );
 
   const renderInputAndHelpers = useCallback(
-    ({ onChange, onBlur, required, meta: { value, isValid } }) => (
+    ({ onChange, onBlur, required, meta }) => (
       <>
         <Label required={required} htmlFor='vin-form__input'>
           {label}
         </Label>
         <Input
-          onChange={onChange}
+          onChange={(event) => onChange(event.target.value)}
           onBlur={onBlur}
-          value={value}
+          value={meta.value || ''}
           id='vin-form__input'
-          error={!isValid}
+          error={!meta.isValid}
           placeHolder={inputPlaceholder}
+          type='text'
         />
-        <ErrorMessage hidden={isValid}>{validationError}</ErrorMessage>
+        <ErrorMessage hidden={meta.isValid}>{validationError}</ErrorMessage>
       </>
     ),
-    [validationError, label]
+    []
   );
 
   const inputWithValidator = useMemo(
@@ -46,7 +47,7 @@ export const VinForm = ({ action, label, validationError, inputPlaceholder }) =>
         validators={[validateVinCode]}
       />
     ),
-    [renderInputAndHelpers]
+    [validationError, label]
   );
 
   const button = useMemo(

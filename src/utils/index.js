@@ -1,6 +1,4 @@
-import { VIN_REGEX } from 'Constants';
-
-export const validateVinCode = (vin) => VIN_REGEX.test(vin);
+export const validateVinCode = (vin) => /^((?=[A-Za-z\d*])(?![IOQioq]).){3,17}$/.test(vin);
 
 export const clone = (item) => JSON.parse(JSON.stringify(item));
 
