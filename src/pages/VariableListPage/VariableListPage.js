@@ -1,8 +1,8 @@
 import './VariableListPage.css';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { TextContext, StoreContext } from 'Contexts';
-import { VariableList } from 'Components';
-import { VARIABLES_ROUTE } from 'Constants';
+import { VariableList, Header, Link } from 'Components';
+import { VARIABLES_ROUTE, ROOT_ROUTE } from 'Constants';
 
 export const VariableListPage = () => {
   const { getText } = useContext(TextContext);
@@ -10,8 +10,6 @@ export const VariableListPage = () => {
   const initVariables = getFromStore('getVariablesAsync');
   const variables = getFromStore('variables');
   const listItemLinkTitle = useMemo(() => getText('varListPage.listItemLinkTitle'), [getText]);
-  // const pageTitle = useMemo(() => getText('varListPage.headerTitle'), [getText]);
-  // const mainPageLinkText = useMemo(() => getText('varListPage.mainPageLinkText'), [getText]);
 
   // init:
   useEffect(() => {
@@ -21,6 +19,15 @@ export const VariableListPage = () => {
   }, [variables, initVariables]);
 
   const listTitle = useMemo(() => variables?.Message, [variables]);
+
+  const header = useMemo(
+    () => (
+      <Header title={getText('varListPage.headerTitle')}>
+        <Link to={ROOT_ROUTE}>{getText('varListPage.linkToMainPageText')}</Link>
+      </Header>
+    ),
+    [getText]
+  );
 
   const suitableVariables = useMemo(() => {
     const parser = new DOMParser();
@@ -33,10 +40,11 @@ export const VariableListPage = () => {
         title: listItemLinkTitle,
       },
     }));
-  }, [variables]);
+  }, [variables, listItemLinkTitle]);
 
   return (
     <main className='var-list-page__container'>
+      {header}
       <VariableList data={suitableVariables} title={listTitle} />
     </main>
   );
