@@ -53,7 +53,7 @@ export const decodeVinAsync = createAsyncAction(
 
 export const getVariablesAsync = createAsyncAction(async ({ payload, dispatch, getState }) => {
   const { variables } = getState().dataReducer;
-  if (!payload.refresh && variables?.Results) {
+  if (!payload?.refresh && variables?.Results) {
     return null;
   }
   const response = await makeRequest({
