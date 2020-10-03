@@ -10,16 +10,6 @@
   padding-bottom: 0.5rem;
 }
 
-.variable-list__container > :nth-child(even):not(.variable-list__title) {
-  background-color: var(--grey-color);
-}
-
-.variable-list__container > :nth-child(odd):not(.variable-list__title) {
+.variable-list__container > :not(.variable-list__title) {
   background-color: var(--input-background-color);
-}
-
-@media screen and (max-width: 768px) {
-  .variable-list__container > :nth-child(even):not(.variable-list__title) {
-    background-color: var(--input-background-color);
-  }
 }

@@ -12,7 +12,6 @@ const initialState = {
   selectedVariable: null,
 };
 
-// eslint-disable-next-line no-unused-vars
 export default function dataReducer(state = initialState, { type, payload }) {
   const newState = { ...state };
 
