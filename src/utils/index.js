@@ -42,7 +42,7 @@ export const createAction = (type) => (payload) => ({
   payload,
 });
 
-export const createAsyncAction = (fn, options) => (payload) => async (dispatch, getState) => {
+export const createAsyncAction = (fn, options) => {
   const cMap = new Map();
 
   const cache = {
@@ -65,5 +65,5 @@ export const createAsyncAction = (fn, options) => (payload) => async (dispatch, 
     get: () => cMap.size,
   });
 
-  return fn({ payload, dispatch, getState, cache });
+  return (payload) => async (dispatch, getState) => fn({ payload, dispatch, getState, cache });
 };
