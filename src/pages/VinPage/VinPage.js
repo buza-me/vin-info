@@ -14,17 +14,20 @@ export const VinPage = () => {
   const selectedHistoryItem = getFromStore('selectedDecodeResults');
   const selectHistoryItem = getFromStore('setSelectedDecodeResults');
 
-  const linkTitle = useMemo(() => getText('vinPage.variableList.linkTitle'), [getText]);
-  const formTitle = useMemo(() => getText('vinPage.form.title'), [getText]);
-  const formInputPlaceholder = useMemo(() => getText('vinPage.form.inputPlaceholder'), [getText]);
-  const formActionTitle = useMemo(() => getText('vinPage.form.submitButtonTitle'), [getText]);
-  const variablesPageLinkTitle = useMemo(() => getText('vinPage.link.variablesPage'), [getText]);
-  const historyListTitle = useMemo(() => getText('vinPage.history.title'), [getText]);
-  const historyActionTitle = useMemo(() => getText('vinPage.history.actionTitle'), [getText]);
-  const historyListEmptyMessage = useMemo(() => getText('vinPage.history.empy'), [getText]);
-  const formValidationErrorMessage = useMemo(() => getText('vinPage.form.validationError'), [
-    getText,
-  ]);
+  const text = useMemo(
+    () => ({
+      linkTitle: getText('vinPage.variableList.linkTitle'),
+      formTitle: getText('vinPage.form.title'),
+      formInputPlaceholder: getText('vinPage.form.inputPlaceholder'),
+      formActionTitle: getText('vinPage.form.submitButtonTitle'),
+      variablesPageLinkTitle: getText('vinPage.link.variablesPage'),
+      historyListTitle: getText('vinPage.history.title'),
+      historyActionTitle: getText('vinPage.history.actionTitle'),
+      historyListEmptyMessage: getText('vinPage.history.empy'),
+      formValidationErrorMessage: getText('vinPage.form.validationError'),
+    }),
+    [getText]
+  );
 
   const header = useMemo(() => <Header title={getText('vinPage.title')} />, [getText]);
 
@@ -41,10 +44,10 @@ export const VinPage = () => {
   const form = useMemo(
     () => (
       <VinForm
-        action={{ title: formActionTitle, callback: formCallback }}
-        label={formTitle}
-        validationError={formValidationErrorMessage}
-        inputPlaceholder={formInputPlaceholder}
+        action={{ title: text.formActionTitle, callback: formCallback }}
+        label={text.formTitle}
+        validationError={text.formValidationErrorMessage}
+        inputPlaceholder={text.formInputPlaceholder}
       />
     ),
     [decodeVin, getText, formCallback]
@@ -57,33 +60,33 @@ export const VinPage = () => {
           of: item.of,
           id: index,
           action: {
-            title: historyActionTitle,
+            title: text.historyActionTitle,
             callback: () => selectHistoryItem(item),
           },
         }))
         .reverse() || [],
-    [decodeHistory, selectedHistoryItem, selectHistoryItem, historyActionTitle]
+    [decodeHistory, selectedHistoryItem, selectHistoryItem, text]
   );
 
   const historyList = useMemo(
     () => (
       <HistoryList
         data={suitableHistory}
-        title={historyListTitle}
+        title={text.historyListTitle}
         activeItem={{ id: decodeHistory.indexOf(selectedHistoryItem) }}
-        emptyMessage={historyListEmptyMessage}
+        emptyMessage={text.historyListEmptyMessage}
       />
     ),
-    [decodeHistory, historyListTitle, selectedHistoryItem]
+    [decodeHistory, text, selectedHistoryItem]
   );
 
   const variablesPageLink = useMemo(
     () => (
       <Link to={VARIABLES_ROUTE} className='vin-page__link-to-variables-page'>
-        {variablesPageLinkTitle}
+        {text.variablesPageLinkTitle}
       </Link>
     ),
-    [variablesPageLinkTitle]
+    [text]
   );
 
   const suitableVariables = useMemo(() => {
@@ -97,7 +100,7 @@ export const VinPage = () => {
             value: Value,
             id: VariableId,
             link: {
-              title: linkTitle,
+              title: text.linkTitle,
               url: `${VARIABLES_ROUTE}/${VariableId}`,
             },
           });
@@ -105,7 +108,7 @@ export const VinPage = () => {
         return acc;
       }, new Map()).values() || [];
     return [...unique];
-  }, [selectedHistoryItem, linkTitle]);
+  }, [selectedHistoryItem, text]);
 
   const variableListTitle = useMemo(() => selectedHistoryItem?.result?.Message, [
     selectedHistoryItem,
