@@ -3,8 +3,16 @@
   font-size: var(--font-size-small);
 }
 
-@media screen and (max-width: 415px) {
+.error-message__container.hidden {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 768px) {
   .error-message__container {
-    font-size: var(--font-size-extra-small);
+    font-size: var(--font-size-small);
+  }
+
+  .error-message__container.hidden {
+    display: none;
   }
 }

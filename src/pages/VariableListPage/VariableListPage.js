@@ -1,14 +1,15 @@
 import './VariableListPage.css';
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { TextContext, StoreContext } from 'Contexts';
-import { VariableList, Header, Button } from 'Components';
+import { VariableList, Header, Button, Loader } from 'Components';
 import { VARIABLES_ROUTE, ROOT_ROUTE } from 'Constants';
 
 export const VariableListPage = () => {
   const history = useHistory();
   const { getText } = useContext(TextContext);
   const { getFromStore } = useContext(StoreContext);
+  const [isLoading, setIsLoading] = useState(false);
   const initVariables = getFromStore('getVariablesAsync');
   const variables = getFromStore('variables');
   const listItemLinkTitle = useMemo(() => getText('varListPage.listItemLinkTitle'), [getText]);
@@ -16,7 +17,8 @@ export const VariableListPage = () => {
   // init:
   useEffect(() => {
     if (!variables?.length) {
-      initVariables();
+      setIsLoading(true);
+      initVariables().finally(() => setIsLoading(false));
     }
   }, [variables, initVariables]);
 
@@ -46,10 +48,12 @@ export const VariableListPage = () => {
     }));
   }, [variables, listItemLinkTitle]);
 
+  const loader = useMemo(() => <Loader centered />, []);
+
   return (
     <main className='var-list-page__container'>
       {header}
-      <VariableList data={suitableVariables} title={listTitle} />
+      {isLoading ? loader : <VariableList data={suitableVariables} title={listTitle} />}
     </main>
   );
 };

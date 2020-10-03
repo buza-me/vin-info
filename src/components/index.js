@@ -1,3 +1,4 @@
+export * from './Loader/Loader';
 export * from './Link/Link';
 export * from './Button/Button';
 export * from './Label/Label';

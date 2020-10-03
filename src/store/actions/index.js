@@ -84,9 +84,14 @@ export const getSelectedVariableAsync = createAsyncAction(
     });
     const parsedResponse = await response.json();
 
-    cache.set(payload, parsedResponse);
-    dispatch(setSelectedVariable(parsedResponse));
-    return parsedResponse;
+    const finalShape = {
+      id: payload,
+      value: parsedResponse,
+    };
+
+    cache.set(payload, finalShape);
+    dispatch(setSelectedVariable(finalShape));
+    return finalShape;
   },
   { cacheSize: 1000 }
 );

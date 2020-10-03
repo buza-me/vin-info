@@ -1,30 +1,30 @@
 import './VinPage.css';
 import React, { useCallback, useContext, useMemo, useState } from 'react';
 import { TextContext, StoreContext } from 'Contexts';
-import { VinForm, VariableList, HistoryList, Link, Header } from 'Components';
+import { VinForm, VariableList, HistoryList, Link, Header, Loader } from 'Components';
 import { VARIABLES_ROUTE } from 'Constants';
 
 export const VinPage = () => {
   const { getText } = useContext(TextContext);
   const { getFromStore } = useContext(StoreContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   const decodeVin = getFromStore('decodeVinAsync');
   const decodeHistory = getFromStore('decodeHistory');
   const selectedHistoryItem = getFromStore('selectedDecodeResults');
   const selectHistoryItem = getFromStore('setSelectedDecodeResults');
 
-  const [isLoading, setIsLoading] = useState(false);
-
   const linkTitle = useMemo(() => getText('vinPage.variableList.linkTitle'), [getText]);
   const formTitle = useMemo(() => getText('vinPage.form.title'), [getText]);
   const formInputPlaceholder = useMemo(() => getText('vinPage.form.inputPlaceholder'), [getText]);
-  const formValidationErrorMessage = useMemo(() => getText('vinPage.form.validationError'), [
-    getText,
-  ]);
   const formActionTitle = useMemo(() => getText('vinPage.form.submitButtonTitle'), [getText]);
   const variablesPageLinkTitle = useMemo(() => getText('vinPage.link.variablesPage'), [getText]);
   const historyListTitle = useMemo(() => getText('vinPage.history.title'), [getText]);
   const historyActionTitle = useMemo(() => getText('vinPage.history.actionTitle'), [getText]);
+  const historyListEmptyMessage = useMemo(() => getText('vinPage.history.empy'), [getText]);
+  const formValidationErrorMessage = useMemo(() => getText('vinPage.form.validationError'), [
+    getText,
+  ]);
 
   const header = useMemo(() => <Header title={getText('vinPage.title')} />, [getText]);
 
@@ -52,14 +52,16 @@ export const VinPage = () => {
 
   const suitableHistory = useMemo(
     () =>
-      decodeHistory.map((item, index) => ({
-        of: item.of,
-        id: index,
-        action: {
-          title: historyActionTitle,
-          callback: () => selectHistoryItem(item),
-        },
-      })),
+      decodeHistory
+        .map((item, index) => ({
+          of: item.of,
+          id: index,
+          action: {
+            title: historyActionTitle,
+            callback: () => selectHistoryItem(item),
+          },
+        }))
+        .reverse() || [],
     [decodeHistory, selectedHistoryItem, selectHistoryItem, historyActionTitle]
   );
 
@@ -69,31 +71,41 @@ export const VinPage = () => {
         data={suitableHistory}
         title={historyListTitle}
         activeItem={{ id: decodeHistory.indexOf(selectedHistoryItem) }}
+        emptyMessage={historyListEmptyMessage}
       />
     ),
     [decodeHistory, historyListTitle, selectedHistoryItem]
   );
 
   const variablesPageLink = useMemo(
-    () => <Link to={VARIABLES_ROUTE}>{variablesPageLinkTitle}</Link>,
+    () => (
+      <Link to={VARIABLES_ROUTE} className='vin-page__link-to-variables-page'>
+        {variablesPageLinkTitle}
+      </Link>
+    ),
     [variablesPageLinkTitle]
   );
 
-  const suitableVariables = useMemo(
-    () =>
-      selectedHistoryItem?.result?.Results?.filter?.((item) => item?.Variable && item?.Value).map(
-        ({ Value, Variable, VariableId }) => ({
-          name: Variable,
-          value: Value,
-          id: VariableId,
-          link: {
-            title: linkTitle,
-            url: `${VARIABLES_ROUTE}/${VariableId}`,
-          },
-        })
-      ),
-    [selectedHistoryItem, linkTitle]
-  );
+  const suitableVariables = useMemo(() => {
+    // API may return duplicated data, it needs filtering
+    const unique =
+      selectedHistoryItem?.result?.Results?.reduce((acc, item) => {
+        if (item?.Variable && item?.Value) {
+          const { Value, Variable, VariableId } = item;
+          acc.set(VariableId, {
+            name: Variable,
+            value: Value,
+            id: VariableId,
+            link: {
+              title: linkTitle,
+              url: `${VARIABLES_ROUTE}/${VariableId}`,
+            },
+          });
+        }
+        return acc;
+      }, new Map()).values() || [];
+    return [...unique];
+  }, [selectedHistoryItem, linkTitle]);
 
   const variableListTitle = useMemo(() => selectedHistoryItem?.result?.Message, [
     selectedHistoryItem,
@@ -104,17 +116,21 @@ export const VinPage = () => {
     [suitableVariables, variableListTitle]
   );
 
+  const loader = useMemo(() => <Loader centered />, []);
+
   return (
     <main className='vin-page__container'>
       {header}
-      <div className='vin-page__actions'>
-        {form}
-        <div className='vin-page__actions_navigation'>
-          {historyList}
-          {variablesPageLink}
+      <section className='vin-page__content'>
+        <div className='vin-page__actions'>
+          {form}
+          <div className='vin-page__actions_navigation'>
+            {historyList}
+            {variablesPageLink}
+          </div>
         </div>
-      </div>
-      {variableList}
+        {isLoading ? loader : variableList}
+      </section>
     </main>
   );
 };

@@ -10,6 +10,8 @@
   --font-size-large: 1.125rem;
   --font-weight-regular: 400;
   --font-weight-bold: 700;
+  --font-style-primary: normal;
+  --font-style-secondary: italic;
 
   --border-radius: 8px;
   --white-color: #ffffff;
@@ -37,4 +39,31 @@
 
 :root *:focus {
   outline: 2px solid var(--text-darker-color);
+}
+
+.app__content-wrapper {
+  width: 1440px;
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  position: relative;
+  justify-content: center;
+  margin: auto;
+}
+
+@media screen and (max-width: 1440px) {
+  :root {
+    --border-radius: 4px;
+  }
+
+  .app__content-wrapper {
+    width: 100%;
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .app__content-wrapper {
+    padding: 1rem;
+  }
 }

@@ -5,7 +5,14 @@ const defaultStrategy = ({ value, validators, required }) =>
   (!validators || !validators.length || validators.some((validator) => validator(value)));
 
 const ValidatorBase = (
-  { renderChildren, validators, required, strategy = defaultStrategy },
+  {
+    renderChildren,
+    validators,
+    required,
+    strategy = defaultStrategy,
+    validOnBlur = false,
+    className = '',
+  },
   ref
 ) => {
   const [meta, setMeta] = useState({
@@ -50,7 +57,7 @@ const ValidatorBase = (
     () =>
       setMeta({
         ...meta,
-        isValid: validate(meta.value),
+        isValid: validOnBlur || validate(meta.value),
       }),
     [meta, validate]
   );
@@ -63,7 +70,7 @@ const ValidatorBase = (
   });
 
   return (
-    <div ref={ref} className='validator__wrapper'>
+    <div ref={ref} className={`validator__wrapper ${className}`}>
       {children}
     </div>
   );

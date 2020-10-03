@@ -1,0 +1,31 @@
+.header__container {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.header__title {
+  color: var(--text-darker-color);
+}
+
+.header__children-wrapper {
+  display: flex;
+}
+
+.header__children-wrapper > *:not(:nth-child(1)) {
+  margin-left: 1rem;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 768px) {
+  .header__container {
+    grid-template-columns: auto;
+  }
+
+  .header__children-wrapper {
+    grid-row: 1 / span 1;
+  }
+}

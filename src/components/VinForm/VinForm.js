@@ -19,9 +19,9 @@ export const VinForm = ({ action, label, validationError, inputPlaceholder }) =>
   );
 
   const renderInputAndHelpers = useCallback(
-    ({ onChange, onBlur, required, meta }) => (
+    ({ onChange, onBlur, meta }) => (
       <>
-        <Label required={required} htmlFor='vin-form__input'>
+        <Label htmlFor='vin-form__input' className='vin-form__label'>
           {label}
         </Label>
         <Input
@@ -30,7 +30,7 @@ export const VinForm = ({ action, label, validationError, inputPlaceholder }) =>
           value={meta.value || ''}
           id='vin-form__input'
           error={!meta.isValid}
-          placeHolder={inputPlaceholder}
+          placeholder={inputPlaceholder}
           type='text'
         />
         <ErrorMessage hidden={meta.isValid}>{validationError}</ErrorMessage>
@@ -45,6 +45,7 @@ export const VinForm = ({ action, label, validationError, inputPlaceholder }) =>
         ref={validatorRef}
         renderChildren={renderInputAndHelpers}
         validators={[validateVinCode]}
+        validOnBlur
       />
     ),
     [validationError, label]

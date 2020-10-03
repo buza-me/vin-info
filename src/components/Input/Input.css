@@ -2,8 +2,8 @@
   width: 100%;
   background-color: var(--input-background-color);
   border-radius: var(--border-radius);
-  font-size: var(--font-size-large);
-  padding: var(--font-size-large);
+  font-size: var(--font-size-normal);
+  padding: var(--font-size-normal);
   border: 1px solid transparent;
 }
 
@@ -11,8 +11,8 @@
   border-color: var(--red-color);
 }
 
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 1440px) {
   .input__content {
-    font-size: var(--font-size-normal);
+    padding: var(--font-size-small);
   }
 }

@@ -1,0 +1,9 @@
+.values-list-item__container {
+  padding: 0.5rem 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .values-list-item__container {
+    word-break: break-word;
+  }
+}
