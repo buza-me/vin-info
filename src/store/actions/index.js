@@ -1,4 +1,4 @@
-import { makeRequest, createAction, createAsyncAction } from 'Utils';
+import { makeRequest, createAction, createAsyncAction, clone } from 'Utils';
 import {
   SET_DECODE_HISTORY,
   SET_SELECTED_DECODE_RESULTS,
@@ -29,7 +29,7 @@ export const decodeVinAsync = createAsyncAction(
 
     if (cache.has(payload)) {
       const cachedResult = cache.get(payload);
-      setValues(cachedResult);
+      setValues(clone(cachedResult));
       return cachedResult;
     }
     const response = await makeRequest({
