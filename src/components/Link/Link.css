@@ -1,0 +1,8 @@
+.link__container {
+  color: var(--crimson-color);
+  transition: color var(--transition-time);
+}
+
+.link__container:hover {
+  color: var(--red-color);
+}

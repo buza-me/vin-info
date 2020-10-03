@@ -1,0 +1,25 @@
+.variable-list__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 0.5rem;
+}
+
+.variable-list__title {
+  font-style: var(--font-style-secondary);
+  font-weight: var(--font-weight-bold);
+  padding-bottom: 0.5rem;
+}
+
+.variable-list__container > :nth-child(even):not(.variable-list__title) {
+  background-color: var(--grey-color);
+}
+
+.variable-list__container > :nth-child(odd):not(.variable-list__title) {
+  background-color: var(--input-background-color);
+}
+
+@media screen and (max-width: 768px) {
+  .variable-list__container > :nth-child(even):not(.variable-list__title) {
+    background-color: var(--input-background-color);
+  }
+}

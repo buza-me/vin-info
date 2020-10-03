@@ -1,0 +1,26 @@
+.button__container {
+  border-radius: var(--border-radius);
+  background-color: var(--crimson-color);
+  color: var(--text-light-color);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-normal);
+  padding: var(--font-size-normal) calc(var(--font-size-normal) * 1.5);
+  transition: background-color var(--transition-time);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.button__container.disabled {
+  filter: brightness(0.5);
+}
+
+.button__container:hover {
+  background-color: var(--red-color);
+}
+
+@media screen and (max-width: 1440px) {
+  .button__container {
+    font-size: var(--font-size-small);
+    padding: var(--font-size-small) calc(var(--font-size-normal) * 1.5);
+  }
+}

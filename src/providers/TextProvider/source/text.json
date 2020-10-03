@@ -1,0 +1,22 @@
+{
+  "hello.world": "hello world!",
+  "errorPage.header": "Incorrect URL",
+  "errorPage.linkText": "Go to main page",
+  "varDetailsPage.title": "Variable details",
+  "varDetailsPage.navToMainPageText": "go to main page",
+  "varDetailsPage.navBackText": "go back",
+  "varDetailsPage.listEmptyMessage": "no results",
+  "varListPage.listItemLinkTitle": "see value details",
+  "varListPage.headerTitle": "Variables list",
+  "varListPage.linkToMainPageText": "go to main page",
+  "vinPage.variableList.linkTitle": "see value details",
+  "vinPage.form.title": "Decode VIN",
+  "vinPage.form.inputPlaceholder": "write VIN code here",
+  "vinPage.form.validationError": "Field should be longer than 2 and shorter than 18 symbols. Letters 'o', 'q', 'i' are forbidden.",
+  "vinPage.form.submitButtonTitle": "Decode",
+  "vinPage.link.variablesPage": "see all variables",
+  "vinPage.history.title": "History:",
+  "vinPage.history.empy": "No history available",
+  "vinPage.history.actionTitle": "apply",
+  "vinPage.title": "VIN info"
+}

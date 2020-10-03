@@ -1,0 +1,19 @@
+.history-list__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 0.5rem;
+  align-items: start;
+}
+
+.history-list__title {
+  padding-bottom: 0.5rem;
+}
+
+.history-list__empty-message-container {
+  border-radius: var(--border-radius);
+  background-color: var(--input-background-color);
+  padding: 1rem;
+  display: grid;
+  place-content: center;
+  font-size: var(--font-size-large);
+}

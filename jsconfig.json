@@ -1,0 +1,17 @@
+{
+  "exclude": ["node_modules", "dist"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@": ["src/"],
+      "Components": ["src/components/"],
+      "Containers": ["src/containers/"],
+      "Pages": ["src/pages/"],
+      "Constants": ["src/constants/"],
+      "Contexts": ["src/contexts/"],
+      "Providers": ["src/providers/"],
+      "Store": ["src/store/"],
+      "Utils": ["src/utils/"]
+    }
+  }
+}

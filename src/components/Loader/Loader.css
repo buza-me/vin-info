@@ -1,0 +1,78 @@
+.loader__wrapper {
+  padding: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.loader__body {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 5px solid var(--crimson-color);
+  border-right-color: transparent;
+  animation-name: spin;
+  animation-duration: calc(var(--transition-time) * 3);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  position: relative;
+}
+
+.loader__body::before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  border: 4px solid var(--crimson-color);
+  border-right-color: transparent;
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  animation-name: spin-inner;
+  animation-duration: calc(var(--transition-time) * 10);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.loader__body::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background-color: var(--crimson-color);
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  animation-name: pulse;
+  animation-duration: calc(var(--transition-time) * 10);
+  animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-inner {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}

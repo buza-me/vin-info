@@ -1,0 +1,18 @@
+.error-message__container {
+  color: var(--red-color);
+  font-size: var(--font-size-small);
+}
+
+.error-message__container.hidden {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .error-message__container {
+    font-size: var(--font-size-small);
+  }
+
+  .error-message__container.hidden {
+    display: none;
+  }
+}
