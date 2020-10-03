@@ -8,9 +8,9 @@
 
 .variable-list-item__text-content-wrapper {
   display: grid;
-  grid-template-columns: auto 1fr;
-  justify-content: start;
-  column-gap: 1rem;
+  grid-template-columns: 1fr;
+  row-gap: 0.25rem;
+  word-break: break-word;
 }
 
 .variable-list-item__name-field {
@@ -25,12 +25,6 @@
   .variable-list-item__container {
     grid-template-columns: 1fr;
     row-gap: 0.25rem;
-  }
-
-  .variable-list-item__text-content-wrapper {
-    grid-template-columns: 1fr;
-    row-gap: 0.25rem;
-    word-break: break-word;
   }
 
   .variable-list-item__link {

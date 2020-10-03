@@ -4,11 +4,7 @@
   grid-row-gap: 0.5rem;
 }
 
-.values-list__container > :nth-child(even):not(.values-list__title):not(.values-list__var-name) {
-  background-color: var(--grey-color);
-}
-
-.values-list__container > :nth-child(odd):not(.values-list__title):not(.values-list__var-name) {
+.values-list__container > :not(.values-list__title):not(.values-list__var-name) {
   background-color: var(--input-background-color);
 }
 
@@ -22,10 +18,4 @@
 .values-list__var-name {
   font-weight: var(--font-weight-bold);
   padding-bottom: 0.5rem;
-}
-
-@media screen and (max-width: 768px) {
-  .values-list__container > :nth-child(even):not(.values-list__title):not(.values-list__var-name) {
-    background-color: var(--input-background-color);
-  }
 }
