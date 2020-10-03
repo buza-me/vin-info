@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap');
-
 :root {
   font-family: 'Noto Sans', sans-serif;
   font-size: 14px;
@@ -14,13 +12,10 @@
   --font-style-secondary: italic;
 
   --border-radius: 8px;
-  --white-color: #ffffff;
   --grey-color: #e8e8e8;
   --red-color: #f15557;
   --crimson-color: #da3f5b;
-  --dark-blue-color: #1e34a5;
   --text-light-color: #ffffff;
-  --text-dim-color: #a7a7a7;
   --text-dark-color: #636363;
   --text-darker-color: #333333;
   --transition-time: 0.25s;
